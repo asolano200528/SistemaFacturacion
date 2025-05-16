@@ -42,18 +42,6 @@ Además, este proyecto me ayudó a **reforzar el trabajo en equipo, mejorar mi c
 
 ---
 
-## 🛠️ Configuración de la base de datos
-
-Antes de correr el proyecto por primera vez:
-
-1. Abrí la solución en Visual Studio
-2. Abrí la Consola del Administrador de Paquetes
-3. Ejecutá el comando:
-
-```powershell
-Update-Database
-```
-
 ## 🔐 Acceso al sistema
 
 Al iniciar la aplicación por primera vez, si no existen usuarios, se crea automáticamente un usuario de prueba:
