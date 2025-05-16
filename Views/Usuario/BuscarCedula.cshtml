@@ -1,0 +1,141 @@
+﻿@model IEnumerable<Proyecto.Models.Usuario>
+
+@{
+    ViewData["Title"] = "Buscar Usuario por Cédula";
+}
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f8f9fa;
+        margin: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #343a40;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+
+    form {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 25px;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+        font-weight: 600;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        margin-top: 5px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-weight: 600;
+        margin-right: 10px;
+        transition: all 0.3s ease-in-out;
+        border-radius: 8px;
+    }
+
+    .btn-primary {
+        color: #ffffff;
+        border: none;
+        background-color: #007bff;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+        }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border: none;
+        color: white;
+    }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3);
+        }
+
+    .alert {
+        max-width: 600px;
+        margin: 20px auto;
+    }
+
+    table {
+        width: 90%;
+        border-collapse: collapse;
+        margin: 30px auto;
+        background-color: #ffffff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    thead {
+        background-color: #000000;
+        color: white;
+    }
+
+    th, td {
+        padding: 14px 20px;
+        text-align: center;
+    }
+</style>
+
+<h1>Buscar Usuario</h1>
+
+<form asp-action="BuscarCedula" method="post" class="mb-4">
+    <div class="form-group">
+        <label for="cedula">Ingrese la cédula:</label>
+        <input type="text" name="cedula" class="form-control" required />
+    </div>
+    <br />
+    <input type="submit" value="Buscar" class="btn btn-primary" />
+    <a asp-action="Index" class="btn btn-secondary">Regresar a la lista</a>
+</form>
+
+@if (!string.IsNullOrEmpty(ViewBag.Mensaje))
+{
+    <div class="alert alert-warning">@ViewBag.Mensaje</div>
+}
+else if (Model != null && Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Cedula)</th>
+                <th>@Html.DisplayNameFor(model => model.Nombre)</th>
+                <th>@Html.DisplayNameFor(model => model.Estado)</th>
+                <th>@Html.DisplayNameFor(model => model.Genero)</th>
+                <th>@Html.DisplayNameFor(model => model.NombreUsuario)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Cedula)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Estado)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Genero)</td>
+                    <td>@Html.DisplayFor(modelItem => item.NombreUsuario)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

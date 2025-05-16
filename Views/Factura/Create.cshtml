@@ -1,0 +1,73 @@
+﻿@model Proyecto.Models.Factura
+
+@{
+    ViewData["Title"] = "Crear Factura";
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <div class="alert alert-danger">
+        @ViewBag.ErrorMessage
+    </div>
+}
+
+<h1>Registrar Factura</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="CedulaCliente" class="control-label">Cédula del Cliente</label>
+                <input asp-for="CedulaCliente" class="form-control" required />
+                <span asp-validation-for="CedulaCliente" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="NombreCliente" class="control-label">Nombre del Cliente</label>
+                <input asp-for="NombreCliente" class="form-control" required/>
+                <span asp-validation-for="NombreCliente" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="CodigoProducto">Código del Producto:</label>
+                <select asp-for="CodigoProducto" class="form-control" required>
+                    <option value="">Seleccione un producto</option>
+
+                    @if (ViewBag.Productos != null && ViewBag.Productos.Count > 0)
+                    {
+                        @foreach (var producto in ViewBag.Productos)
+                        {
+                            <option value="@producto.Codigo">@producto.Codigo - @producto.Nombre</option>
+                        }
+                    }
+                    else
+                    {
+                        <option value="">No hay productos disponibles</option>
+                    }
+                </select>
+                <span asp-validation-for="CodigoProducto" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="NombreProducto" class="control-label">Nombre del Producto</label>
+                <input asp-for="NombreProducto" class="form-control" required />
+                <span asp-validation-for="NombreProducto" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CantidadProducto" class="control-label">Cantidad de Productos</label>
+                <input asp-for="CantidadProducto" class="form-control" required/>
+                <span asp-validation-for="CantidadProducto" class="text-danger"></span>
+            </div>
+
+            <br />
+
+            <div class="form-group">
+                <input type="submit" value="Registrar" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Regresar</a>
+            </div>
+        </form>
+    </div>
+</div>

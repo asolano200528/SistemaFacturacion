@@ -1,0 +1,128 @@
+﻿@model Proyecto.Models.Usuario
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f8f9fa;
+        margin: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #343a40;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+
+    h3 {
+        text-align: center;
+        color: #343a40;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+
+    h4 {
+        color: #343a40;
+        margin-bottom: 10px;
+        font-weight: 500;
+        margin-left: 200px;
+    }
+
+    hr {
+        border-top: 1px solid #dee2e6;
+        margin: 10px 0 20px;
+    }
+
+    .row {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    dt {
+        font-weight: 600;
+        color: #212529;
+    }
+
+    dd {
+        color: #495057
+    }
+
+    form {
+        max-width: 800px;
+        margin: 30px auto;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-weight: 600;
+        margin-right: 10px;
+        transition: all 0.3s ease-in-out;
+        border-radius: 8px;
+    }
+
+    .btn-primary {
+        color: #ffffff;
+        border: none;
+        background-color: #007bff;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+        }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border: none;
+        color: white;
+    }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3);
+        }
+
+</style>
+
+<h1>Eliminar Usuario</h1>
+
+<h3>¿Estás seguro de que deseas eliminar este usuario?</h3>
+<div>
+    <h4>Usuario</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cedula)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cedula)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+    </dl>
+
+    <form asp-action="DeleteConfirmed" method="post">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>

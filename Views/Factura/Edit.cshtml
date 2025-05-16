@@ -1,0 +1,131 @@
+﻿@model Proyecto.Models.Factura
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f8f9fa;
+        margin: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #343a40;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+
+    table {
+        width: 90%;
+        border-collapse: collapse;
+        margin: 30px auto;
+        background-color: #ffffff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    thead {
+        background-color: #000000;
+        color: white;
+    }
+
+    th, td {
+        padding: 14px 20px;
+        text-align: center;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-weight: 600;
+        margin-right: 10px;
+        transition: all 0.3s ease-in-out;
+        border-radius: 8px;
+    }
+
+    .btn-primary {
+        color: #ffffff;
+        border: none;
+        background-color: #007bff;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+        }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border: none;
+        color: white;
+    }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3);
+        }
+
+    p a {
+        margin-right: 10px;
+    }
+</style>
+
+<h1>Editar Factura</h1>
+
+<h4>Factura</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group">
+                <label asp-for="CedulaCliente" class="control-label">Cedula del Cliente</label>
+                <input asp-for="CedulaCliente" class="form-control" />
+                <span asp-validation-for="CedulaCliente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NombreCliente" class="control-label">Nombre del Cliente</label>
+                <input asp-for="NombreCliente" class="form-control" />
+                <span asp-validation-for="NombreCliente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="CodigoProducto">Código del Producto:</label>
+                <select asp-for="CodigoProducto" class="form-control">
+                    <option value="">Seleccione un producto</option>
+                    @foreach (var producto in ViewBag.Productos)
+                    {
+                        <option value="@producto.Codigo">@producto.Codigo - @producto.Nombre</option>
+                    }
+                </select>
+                <span asp-validation-for="CodigoProducto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NombreProducto" class="control-label">Nombre del Producto</label>
+                <input asp-for="NombreProducto" class="form-control" />
+                <span asp-validation-for="NombreProducto" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="CantidadProducto" class="control-label">Cantidad de Productos</label>
+                <input asp-for="CantidadProducto" class="form-control" />
+                <span asp-validation-for="CantidadProducto" class="text-danger"></span>
+            </div>
+
+            <br />
+
+            <div class="form-group">
+                <input type="submit" value="Editar" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Regresar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

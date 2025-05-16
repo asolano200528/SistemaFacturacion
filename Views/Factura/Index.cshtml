@@ -1,0 +1,148 @@
+﻿@model IEnumerable<Proyecto.Models.Factura>
+
+@{
+    ViewData["Title"] = "Facturar";
+}
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f8f9fa;
+        margin: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #343a40;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+
+    table {
+        width: 90%;
+        border-collapse: collapse;
+        margin: 30px auto;
+        background-color: #ffffff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    thead {
+        background-color: #000000;
+        color: white;
+    }
+
+    th, td {
+        padding: 14px 20px;
+        text-align: center;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 6px 12px;
+        margin: 5px 4px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 8px;
+        border: none;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #ffffff;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    .btn-secondary {
+        background-color: #f00f0f;
+        color: #ffffff;
+    }
+
+        .btn-secondary:hover {
+            background-color: #b21212;
+        }
+
+    p a {
+        margin-right: 10px;
+    }
+</style>
+
+<h1>Facturacion</h1>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Facturar</a> 
+    <a asp-action="FacturacionDelMes" class="btn btn-primary">Facturación total por mes</a> 
+    <a asp-action="BuscarFacturaId" class="btn btn-primary">Buscar Factura por ID</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CedulaCliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreCliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CodigoProducto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreProducto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaFactura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CantidadProducto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MontoTotal)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CedulaCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoProducto)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.NombreProducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaFactura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CantidadProducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MontoTotal)
+            </td>
+            <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new{@class = "btn btn-primary"}) 
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new{@class = "btn btn-secondary"})
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

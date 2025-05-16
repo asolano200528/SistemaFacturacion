@@ -1,0 +1,142 @@
+﻿@model Proyecto.Models.Factura
+
+@{
+    ViewData["Title"] = "Buscar Factura por ID";
+}
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f8f9fa;
+        margin: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #343a40;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+
+    form {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 25px;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+        font-weight: 600;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        margin-top: 5px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-weight: 600;
+        margin-right: 10px;
+        transition: all 0.3s ease-in-out;
+        border-radius: 8px;
+    }
+
+    .btn-primary {
+        color: #ffffff;
+        border: none;
+        background-color: #007bff;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border: none;
+        color: white;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3);
+    }
+
+    .alert {
+        max-width: 600px;
+        margin: 20px auto;
+    }
+
+    table {
+        width: 90%;
+        border-collapse: collapse;
+        margin: 30px auto;
+        background-color: #ffffff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    thead {
+        background-color: #000000;
+        color: white;
+    }
+
+    th, td {
+        padding: 14px 20px;
+        text-align: center;
+    }
+
+</style>
+
+<h2>Buscar Factura por ID</h2>
+
+<!-- Formulario para ingresar el ID de la factura -->
+<form asp-action="BuscarFacturaId" method="post">
+    <label for="idFactura">Ingrese el ID de la factura:</label>
+    <input type="number" name="idFactura" class="form-control" required />
+    <br>
+    <button type="submit" class="btn btn-primary">Buscar</button>
+    <a asp-action="Index" class="btn btn-secondary">Regresar</a>
+</form>
+
+<hr />
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <p class="text-danger">@ViewBag.ErrorMessage</p>
+}
+
+@if (Model != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID Factura</th>
+                <th>Cliente</th>
+                <th>Producto</th>
+                <th>Fecha</th>
+                <th>Monto Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.Id</td>
+                <td>@Model.NombreCliente</td>
+                <td>@Model.NombreProducto</td>
+                <td>@Model.FechaFactura</td>
+                <td>@Model.MontoTotal</td>
+            </tr>
+        </tbody>
+    </table>
+}
+
